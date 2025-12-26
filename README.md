@@ -97,7 +97,7 @@ animsvg/
 
 - **Framework:** React 19
 - **Build Tool:** Vite 6
-- **Styling:** Tailwind CSS 3.4
+- **Styling:** Tailwind CSS 4
 - **Language:** TypeScript 5.8
 - **AI:** Google Gemini 3.0 Pro
 - **Icons:** Lucide React
