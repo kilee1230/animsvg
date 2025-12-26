@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, userEvent, within } from "@storybook/test";
 import SvgPreview from "./SvgPreview";
 
@@ -101,7 +101,9 @@ export const Loading: Story = {
 
     // Assert loading overlay is displayed
     await expect(canvas.getByText(/Generating Animation/i)).toBeInTheDocument();
-    await expect(canvas.getByText(/Crafting code with Gemini/i)).toBeInTheDocument();
+    await expect(
+      canvas.getByText(/Crafting code with Gemini/i)
+    ).toBeInTheDocument();
   },
 };
 
@@ -129,7 +131,8 @@ export const DarkMode: Story = {
 export const BouncingBall: Story = {
   args: {
     svgCode: BOUNCING_BALL_SVG,
-    explanation: "A bouncing ball with eased animation using spline interpolation.",
+    explanation:
+      "A bouncing ball with eased animation using spline interpolation.",
     isDarkMode: false,
   },
   play: async ({ canvasElement }) => {
@@ -173,11 +176,11 @@ export const EmptySvg: Story = {
     isDarkMode: false,
   },
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    // SVG element should not exist when code is empty
-    const svgElement = canvasElement.querySelector("svg");
-    await expect(svgElement).not.toBeInTheDocument();
+    // SVG element should not exist in the preview wrapper when code is empty
+    // (Note: toolbar icons are also SVGs, so we check specifically in the wrapper)
+    const previewWrapper = canvasElement.querySelector(".preview-svg-wrapper");
+    const svgInWrapper = previewWrapper?.querySelector("svg");
+    await expect(svgInWrapper).toBeFalsy();
   },
 };
 
@@ -197,12 +200,12 @@ export const ZoomControls: Story = {
     });
 
     await step("Click zoom in button", async () => {
-      const zoomInButton = canvasElement.querySelector('button[class*="hover:text-zinc"]');
       // Find the button that contains ZoomIn icon (after the zoom display)
       const buttons = canvas.getAllByRole("button");
-      const zoomInBtn = buttons.find((btn) =>
-        btn.querySelector('svg.lucide-zoom-in') ||
-        btn.getAttribute("class")?.includes("hover:text-zinc")
+      const zoomInBtn = buttons.find(
+        (btn) =>
+          btn.querySelector("svg.lucide-zoom-in") ||
+          btn.getAttribute("class")?.includes("hover:text-zinc")
       );
 
       if (zoomInBtn) {

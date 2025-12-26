@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, fn, userEvent, within } from "@storybook/test";
 import Header from "./Header";
 
@@ -46,7 +46,9 @@ export const LightMode: Story = {
     await expect(canvas.getByText(/Powered by Gemini/i)).toBeInTheDocument();
 
     // Assert theme toggle button shows moon icon (to switch to dark mode)
-    const themeButton = canvas.getByRole("button", { name: /switch to dark mode/i });
+    const themeButton = canvas.getByRole("button", {
+      name: /switch to dark mode/i,
+    });
     await expect(themeButton).toBeInTheDocument();
   },
 };
@@ -65,7 +67,9 @@ export const DarkMode: Story = {
     await expect(canvas.getByText("AnimSVG")).toBeInTheDocument();
 
     // Assert theme toggle button shows sun icon (to switch to light mode)
-    const themeButton = canvas.getByRole("button", { name: /switch to light mode/i });
+    const themeButton = canvas.getByRole("button", {
+      name: /switch to light mode/i,
+    });
     await expect(themeButton).toBeInTheDocument();
   },
 };
@@ -79,12 +83,16 @@ export const ThemeToggleInteraction: Story = {
     const canvas = within(canvasElement);
 
     await step("Find theme toggle button", async () => {
-      const themeButton = canvas.getByRole("button", { name: /switch to dark mode/i });
+      const themeButton = canvas.getByRole("button", {
+        name: /switch to dark mode/i,
+      });
       await expect(themeButton).toBeInTheDocument();
     });
 
     await step("Click theme toggle", async () => {
-      const themeButton = canvas.getByRole("button", { name: /switch to dark mode/i });
+      const themeButton = canvas.getByRole("button", {
+        name: /switch to dark mode/i,
+      });
       await userEvent.click(themeButton);
 
       // Assert toggleTheme was called
@@ -92,7 +100,9 @@ export const ThemeToggleInteraction: Story = {
     });
 
     await step("Click theme toggle again", async () => {
-      const themeButton = canvas.getByRole("button", { name: /switch to dark mode/i });
+      const themeButton = canvas.getByRole("button", {
+        name: /switch to dark mode/i,
+      });
       await userEvent.click(themeButton);
 
       // Assert toggleTheme was called twice

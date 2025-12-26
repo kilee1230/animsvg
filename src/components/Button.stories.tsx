@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, fn, userEvent, within } from "@storybook/test";
 import { Download, Send, Trash2 } from "lucide-react";
 import Button from "./Button";
@@ -201,9 +201,17 @@ export const AllVariants: Story = {
     const canvas = within(canvasElement);
 
     // Assert all variants are rendered
-    await expect(canvas.getByRole("button", { name: /primary/i })).toBeInTheDocument();
-    await expect(canvas.getByRole("button", { name: /secondary/i })).toBeInTheDocument();
-    await expect(canvas.getByRole("button", { name: /ghost/i })).toBeInTheDocument();
-    await expect(canvas.getByRole("button", { name: /danger/i })).toBeInTheDocument();
+    await expect(
+      canvas.getByRole("button", { name: /primary/i })
+    ).toBeInTheDocument();
+    await expect(
+      canvas.getByRole("button", { name: /secondary/i })
+    ).toBeInTheDocument();
+    await expect(
+      canvas.getByRole("button", { name: /ghost/i })
+    ).toBeInTheDocument();
+    await expect(
+      canvas.getByRole("button", { name: /danger/i })
+    ).toBeInTheDocument();
   },
 };

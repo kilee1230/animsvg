@@ -60,14 +60,21 @@
 
 ```
 animsvg/
+├── .storybook/           # Storybook configuration
+│   ├── main.ts
+│   └── preview.tsx
 ├── src/
 │   ├── components/       # React components
 │   │   ├── Button.tsx
+│   │   ├── Button.stories.tsx
 │   │   ├── CodeEditor.tsx
+│   │   ├── CodeEditor.stories.tsx
 │   │   ├── EditorPanel.tsx
 │   │   ├── GifExportModal.tsx
 │   │   ├── Header.tsx
-│   │   └── SvgPreview.tsx
+│   │   ├── Header.stories.tsx
+│   │   ├── SvgPreview.tsx
+│   │   └── SvgPreview.stories.tsx
 │   ├── services/         # API and utility services
 │   │   ├── geminiService.ts
 │   │   ├── gifService.ts
@@ -78,8 +85,7 @@ animsvg/
 │   ├── index.css         # Global styles with Tailwind
 │   └── vite-env.d.ts     # Vite environment types
 ├── index.html            # HTML entry point
-├── tailwind.config.js    # Tailwind CSS configuration
-├── postcss.config.js     # PostCSS configuration
+├── eslint.config.js      # ESLint configuration
 ├── vite.config.ts        # Vite configuration
 ├── tsconfig.json         # TypeScript configuration
 └── package.json          # Project dependencies
@@ -87,11 +93,47 @@ animsvg/
 
 ## 🛠️ Scripts
 
-| Command        | Description              |
-| -------------- | ------------------------ |
-| `pnpm dev`     | Start development server |
-| `pnpm build`   | Build for production     |
-| `pnpm preview` | Preview production build |
+| Command                | Description                     |
+| ---------------------- | ------------------------------- |
+| `pnpm dev`             | Start development server        |
+| `pnpm build`           | Build for production            |
+| `pnpm preview`         | Preview production build        |
+| `pnpm lint`            | Run ESLint                      |
+| `pnpm lint:fix`        | Run ESLint with auto-fix        |
+| `pnpm storybook`       | Start Storybook dev server      |
+| `pnpm build-storybook` | Build Storybook for production  |
+| `pnpm test-storybook`  | Run Storybook interaction tests |
+
+## 🧪 Testing
+
+This project uses [Storybook](https://storybook.js.org/) for component development and interaction testing.
+
+### Running Storybook
+
+```bash
+pnpm storybook
+```
+
+Open [http://localhost:6006](http://localhost:6006) to view your component stories.
+
+### Running Interaction Tests
+
+Interaction tests verify component behavior by simulating user actions. To run all tests:
+
+```bash
+# First, start Storybook in one terminal
+pnpm storybook
+
+# Then, run tests in another terminal
+pnpm test-storybook
+```
+
+Or run tests against a built Storybook:
+
+```bash
+pnpm build-storybook
+pnpm test-storybook --url http://localhost:6006
+```
 
 ## 🔧 Tech Stack
 
@@ -102,3 +144,5 @@ animsvg/
 - **AI:** Google Gemini 3.0 Pro
 - **Icons:** Lucide React
 - **Video Export:** mp4-muxer, gifenc
+- **Testing:** Storybook 8 with Interaction Testing
+- **Linting:** ESLint 9
