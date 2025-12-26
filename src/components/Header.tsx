@@ -1,5 +1,5 @@
-import React from 'react';
-import { Sparkles, Command, Sun, Moon } from 'lucide-react';
+import React from "react";
+import { Sparkles, Command, Sun, Moon } from "lucide-react";
 
 interface HeaderProps {
   isDarkMode: boolean;
@@ -15,25 +15,32 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleTheme }) => {
             <Sparkles className="w-5 h-5 text-white" />
           </div>
           <h1 className="font-bold text-xl tracking-tight text-zinc-800 dark:text-zinc-100">
-            AnimSVG <span className="text-primary font-mono text-xs px-2 py-0.5 rounded-full bg-green-50 dark:bg-green-900/30 font-medium">AI</span>
+            AnimSVG{" "}
+            <span className="text-primary font-mono text-xs px-2 py-0.5 rounded-full bg-green-50 dark:bg-green-900/30 font-medium">
+              AI
+            </span>
           </h1>
         </div>
-        
-        <div className="flex items-center gap-4">
-           <span className="hidden md:flex items-center gap-1 text-sm text-zinc-500 dark:text-zinc-400">
-             <Command className="w-3 h-3" /> 
-             Powered by Gemini 3.0 Pro
-           </span>
-           
-           <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-700 hidden md:block"></div>
 
-           <button 
+        <div className="flex items-center gap-4">
+          <span className="hidden md:flex items-center gap-1 text-sm text-zinc-500 dark:text-zinc-400">
+            <Command className="w-3 h-3" />
+            Powered by Gemini 3.0 Pro
+          </span>
+
+          <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-700 hidden md:block"></div>
+
+          <button
             onClick={toggleTheme}
             className="p-2 rounded-lg text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-           >
-             {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-           </button>
+          >
+            {isDarkMode ? (
+              <Sun className="w-5 h-5" />
+            ) : (
+              <Moon className="w-5 h-5" />
+            )}
+          </button>
         </div>
       </div>
     </header>
@@ -41,4 +48,3 @@ const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleTheme }) => {
 };
 
 export default Header;
-
