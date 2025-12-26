@@ -114,6 +114,19 @@ const EditorPanel: React.FC<EditorPanelProps> = ({
   const historyEndRef = useRef<HTMLDivElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
+  const extractColors = (svg: string) => {
+    const colorRegex = /#(?:[0-9a-fA-F]{3}){1,2}\b/g;
+    const matches = svg.match(colorRegex);
+    if (matches) {
+      const uniqueColors = Array.from(
+        new Set(matches.map((c) => c.toLowerCase()))
+      );
+      setColors(uniqueColors);
+    } else {
+      setColors([]);
+    }
+  };
+
   useEffect(() => {
     setLocalCode(svgCode);
     extractColors(svgCode);
@@ -141,19 +154,6 @@ const EditorPanel: React.FC<EditorPanelProps> = ({
       return () => clearTimeout(timeoutId);
     }
   }, [chatMessages.length, activeTab, status]);
-
-  const extractColors = (svg: string) => {
-    const colorRegex = /#(?:[0-9a-fA-F]{3}){1,2}\b/g;
-    const matches = svg.match(colorRegex);
-    if (matches) {
-      const uniqueColors = Array.from(
-        new Set(matches.map((c) => c.toLowerCase()))
-      );
-      setColors(uniqueColors);
-    } else {
-      setColors([]);
-    }
-  };
 
   const handleColorChange = (oldColor: string, newColor: string) => {
     const regex = new RegExp(oldColor, "gi");
