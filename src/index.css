@@ -1,8 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap");
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Enable class-based dark mode (using .dark class on html element) */
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: #f9f9f9;
+  --color-surface: #ffffff;
+  --color-primary: #78c95a;
+  --color-primary-dark: #5fa052;
+  --color-secondary: #a1a1aa;
+  --color-border: #e4e4e7;
+
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "Fira Code", monospace;
+
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
 
 @layer base {
   body {
