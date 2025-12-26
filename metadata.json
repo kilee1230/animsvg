@@ -1,0 +1,5 @@
+{
+  "name": "AnimSVG",
+  "description": "Generate, edit, and export animated SVGs using AI. Features a real-time code editor, color picker, and instant preview.",
+  "requestFramePermissions": []
+}
